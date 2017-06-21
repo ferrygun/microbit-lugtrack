@@ -5,12 +5,12 @@ let Xold = 0
 let Yold = 0
 let movement = false
 let Zold = 0
-let timet = 12 //The Device turns itself back ON once the device stands still for 12 minutes
 let Xthreshold = 0
-let Ymovement = 0
 let Ythreshold = 0
-let Xmovement = 0
+let Ymovement = 0
 let Zthreshold = 0
+let Xmovement = 0
+let timet = 0
 let Zmovement = 0
 bluetooth.onBluetoothConnected(() => {
 
@@ -27,7 +27,13 @@ basic.forever(() => {
         if (Zmovement < Zold - Zthreshold || Zmovement > Zold + Zthreshold) {
             Zold = Zmovement
             movement = true
-            basic.showString("Z")
+            basic.showLeds(`
+                # . . . .
+                . . . . .
+                . . . . .
+                . . . . .
+                . . . . .
+                `)
         }
     }
     if (Ymovement != Yold) {
@@ -35,7 +41,13 @@ basic.forever(() => {
         if (Ymovement < Yold - Ythreshold || Ymovement > Yold + Ythreshold) {
             Yold = Ymovement
             movement = true
-            basic.showString("Y")
+            basic.showLeds(`
+                . # . . .
+                . . . . .
+                . . . . .
+                . . . . .
+                . . . . .
+                `)
         }
     }
     if (Xmovement != Xold) {
@@ -43,7 +55,13 @@ basic.forever(() => {
         if (Xmovement < Xold - Xthreshold || Xmovement > Xold + Xthreshold) {
             Xold = Xmovement
             movement = true
-            basic.showString("X")
+            basic.showLeds(`
+                . . # . .
+                . . . . .
+                . . . . .
+                . . . . .
+                . . . . .
+                `)
         }
     }
     if (movement) {
@@ -57,7 +75,14 @@ basic.forever(() => {
         now = input.runningTime()
         if (now > now1 + timet * 1000 * 60) {
             if (advertise == false) {
-                basic.showString("F")
+                basic.showLeds(`
+                    . . . . .
+                    . . . . .
+                    . . # . .
+                    . . . . .
+                    . . . . .
+                    `)
+                // basic.showString("F")
                 bluetooth.advertiseUrl(
                     "http://www.google.com",
                     7,
@@ -68,8 +93,9 @@ basic.forever(() => {
         }
     }
 })
-Zthreshold = 100
-Ythreshold = 100
-Xthreshold = 100
+timet = 12
+Zthreshold = 300
+Ythreshold = 300
+Xthreshold = 300
 timet = 12
 bluetooth.stopAdvertising()
