@@ -5,7 +5,7 @@ let Xold = 0
 let Yold = 0
 let movement = false
 let Zold = 0
-let timet = 0 //The Device turns itself back ON once the device stands still for 12 minutes
+let timet = 12 //The Device turns itself back ON once the device stands still for 12 minutes
 let Xthreshold = 0
 let Ymovement = 0
 let Ythreshold = 0
@@ -68,8 +68,18 @@ basic.forever(() => {
         }
     }
 })
-Zthreshold = 100
-Ythreshold = 100
-Xthreshold = 100
-timet = 1
+advertise = false
+now1 = 0
+now = 0
+Xold = 0
+Yold = 0
+movement = false
+Zold = 0
+timet = 12 //The Device turns itself back ON once the device stands still for 12 minutes
+Xthreshold = 0
+Ymovement = 0
+Ythreshold = 0
+Xmovement = 0
+Zthreshold = 0
+Zmovement = 0
 bluetooth.stopAdvertising()
