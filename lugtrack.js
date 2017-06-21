@@ -68,18 +68,8 @@ basic.forever(() => {
         }
     }
 })
-advertise = false
-now1 = 0
-now = 0
-Xold = 0
-Yold = 0
-movement = false
-Zold = 0
-timet = 12 //The Device turns itself back ON once the device stands still for 12 minutes
-Xthreshold = 0
-Ymovement = 0
-Ythreshold = 0
-Xmovement = 0
-Zthreshold = 0
-Zmovement = 0
+Zthreshold = 100
+Ythreshold = 100
+Xthreshold = 100
+timet = 12
 bluetooth.stopAdvertising()
